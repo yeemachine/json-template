@@ -1,7 +1,12 @@
 {
-  "name": "Webpack Sample",
-  "id": "738168449509241862",
+  "name": "JSON Templator",
+  "id": "761098431161143653",
   "api": "1.0.0",
   "main": "dist/code.js",
-  "ui": "dist/ui.html"
+  "ui": "dist/ui.html",
+  "menu": [
+    {"name": "Add JSON", "command": "add_json"},
+    {"separator": true},
+    {"name": "Populate JSON", "command": "populate_json"}
+  ]
 }

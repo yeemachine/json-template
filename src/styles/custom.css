@@ -1,0 +1,52 @@
+html,body{
+    padding:8px;
+    margin:0;
+  }
+
+  .divider{
+    margin:16px 0px 16px -16px;
+    width:100vw;
+  }
+
+  .distributeMode{
+    display:flex;
+    justify-content: space-between
+  }
+
+  .distributeMode div>div{
+    display:flex;
+  }
+
+  .icon:first-child{
+    margin: 0 4px 0 0;
+  }
+
+  .label{
+    margin: 0px 0px 8px 0px;
+    padding:0;
+    font-weight: 500;
+    color:#000;
+    height:max-content;
+  }
+
+  .label span{
+    margin-left:2px;
+    opacity:0.3;
+  }
+
+  .CTAs{
+    margin-top:4px;
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .CTAs button{
+    width:calc(50% - 8px);
+  }
+
+  .checkbox{
+    width:100vw;
+    margin:0 0 -8px -16px;
+    padding:0 8px 0 8px;
+  }

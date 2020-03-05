@@ -1,20 +1,39 @@
-figma.showUI(__html__)
+import {clone} from './scripts/helper.js'
+import './scripts/clientStorage'
+import { onJSONReceived } from './scripts/onJSONReceived'
+import './scripts/clientStorage'
+
+figma.showUI(__html__,{ width: 290, height: 468 })
 
 figma.ui.onmessage = msg => {
-  if (msg.type === 'create-rectangles') {
-    const nodes = []
+  if (msg.type === 'json-received') {
+    console.log('MESSAGE: '+msg.type,msg)
+    figma.clientStorage.setAsync('json-templator', msg.config)
 
-    for (let i = 0; i < msg.count; i++) {
-      const rect = figma.createRectangle()
-      rect.x = i * 150
-      rect.fills = [{type: 'SOLID', color: {r: 1, g: 0.5, b: 0}}]
-      figma.currentPage.appendChild(rect)
-      nodes.push(rect)
-    }
-
-    figma.currentPage.selection = nodes
-    figma.viewport.scrollAndZoomIntoView(nodes)
+    onJSONReceived(msg.config.obj)
   }
 
-  figma.closePlugin()
+  if (msg.type === 'img-fill') {
+    console.log('MESSAGE: '+msg.type,msg)
+    const node = figma.getNodeById(msg.config.nodeID) as GeometryMixin,
+    newBytes = msg.config.arr,
+    newPaint = clone(node.fills[0])
+
+    newPaint.type = "IMAGE";
+    newPaint.scaleMode = "FILL";
+      delete newPaint.color;
+      delete newPaint.gradientStops;
+      delete newPaint.gradientTransform;
+    newPaint.imageHash = figma.createImage(newBytes).hash
+    node.fills = [newPaint]
+  }
+
 }
+
+figma.on("selectionchange", () => {
+   console.log("changed") 
+})
+
+
+  // figma.closePlugin()
+

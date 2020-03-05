@@ -1,5 +1,15 @@
-<img src="<%= require('./logo.svg') %>">
-<h2>Rectangle Creator</h2>
-<p>Count: <input id="count" value="5"></p>
-<button id="create">Create</button>
-<button id="cancel">Cancel</button>
+  <div class="JSONSelector">
+    <label class="label pos-small-normal">JSON<span>(url)</span></label>
+    <input type="input" class="input" id="JSONInput" placeholder="https://api.myjson.com/bins/1bb6sc" value='' autofocus>
+  </div>
+  <div class="KeySelector">
+    <label class="label pos-small-normal">Key</label>
+    <input type="input" class="input" id="KeyInput" placeholder="data" value='data' autofocus>
+  </div>
+  <pre id="json_view"></pre>	
+  <div class="divider"></div>
+  <div class="CTAs">
+    <button class="button button--primary" id="submit">Ok</button>
+    <button class="button button--secondary" id="cancel">Cancel</button>
+  </div>
+  <canvas style="opacity:0;position:fixed;pointer-events:none;"></canvas>
